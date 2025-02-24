@@ -59,8 +59,8 @@ generatePrompt = ChatPromptTemplate(
                 2. interfaces 
                     > list the interfaces that this component can interact with
                 3. use cases  
-                    2.1 Good use cases   > limit to use cases relevant to financial services 
-                    2.2 bad use cases    > list use cases that this product should not be used for, keep this constrained to the financial services sector
+                    2.1 Good use cases   > limit to use cases relevant to E-Commerce
+                    2.2 bad use cases    > list use cases that this product should not be used for, keep this constrained to the E-Commerce sector
                 4. security best practice > encourage use to keep separation of concerns
                     3.1 roles   > list roles and descriptions
                     3.2 security    > over view of security stance , include a subsection that details the configuration setting to meet this defintion
