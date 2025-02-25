@@ -7,7 +7,7 @@ a simple LLM tool to generate documentation
 
  A sample, that will read a markdown file, and split it into section based on the ``` ## ``` tag, then for each section, the content is the prompt that will be passed to the LLM for generation
 
-### DocGenReflext.py
+### DocGenReflect.py
 
 A sample agent based document generation. that has 3 steps,
 
