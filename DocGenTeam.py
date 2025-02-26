@@ -1,11 +1,7 @@
 import os
 from dotenv import load_dotenv
-#from langchain.chat_models import ChatOpenAI
-#from langchain_community.chat_models import ChatOpenAI
 from langchain_openai import ChatOpenAI 
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
-#from langchain.memory import ConversationBufferMemory
-#from langchain_community.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferMemory  
 
 # Load API Key
@@ -133,10 +129,10 @@ def coordinator_agent(project_details):
 
 if __name__ == "__main__":
     project_info = """
-    Project Name: AI-Powered Building Design
-    Scope: A cloud-based system for architects to design buildings using AI.
-    Technology Stack: Python, AWS, LangChain, OpenAI, React
-    Requirements: Scalable, Secure, Multi-user collaboration, AI-based recommendations
+    Project Name: resilient Database
+    Scope: A database component based on MS SQL Server that is highly resilient and scalable.
+    Technology Stack: Python, AWS
+    Requirements: Scalable, Secure, Multi-user collaboration, observable
     Industry Standards: TOGAF, Microservices Best Practices
     """
     
