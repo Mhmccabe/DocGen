@@ -16,16 +16,16 @@ load_dotenv()
 
 
 
-OllamaLLM = ChatOllama(model="llama3.2", temperature=0.2)
+#OllamaLLM = ChatOllama(model="llama3.2", temperature=0.2)
 #OllamaLLM = ChatOllama(model="deepseek-r1:14b", temperature=0.2)
 #AnthopicLLM = ChatAnthropic(model_name="llama-3.2-90b-text-preview", temperature=0.7)
-#OpenAILLM = ChatOpenAI(model="gpt-4o", temperature=0.7, max_tokens=None, max_retries=2)
+OpenAILLM = ChatOpenAI(model="gpt-4o", temperature=0.7, max_tokens=None, max_retries=2)
 #GroqLLM =  ChatGroq(model = "Deepseek-R1-Distill-llama-70b", temperature=0.7 )
 #GroqLLM =  ChatGroq(model = "Deepseek-R1-Distill-llama-70b", temperature=0.7 )
-GroqLLM =  ChatGroq(model = "llama-3.3-70b-Specdec", temperature=0.7 )
+#GroqLLM =  ChatGroq(model = "llama-3.3-70b-Specdec", temperature=0.7 )
 
-GenLLM = OllamaLLM
-ReflextLLM = GroqLLM
+GenLLM = OpenAILLM 
+ReflectLLM = OpenAILLM
 
 
 #####  Generate ####################################################
@@ -79,7 +79,7 @@ generateChain = generatePrompt | GenLLM
 ## define the question
 OriginalDoc = ""
 request = HumanMessage(
-    content="Write a component standard on Grafana and prometheus"
+    content="Write a component standard on Azure API Management"
 )
 
 ## generate the request
@@ -121,7 +121,7 @@ reflectPrompt = ChatPromptTemplate(
 ## generate the reflection
 
 
-reflectChain = reflectPrompt | ReflextLLM
+reflectChain = reflectPrompt | ReflectLLM
 
 reflection = ""
 ## generate the reflection
