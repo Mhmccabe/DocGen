@@ -3,63 +3,61 @@
 ## 1. Introduction
 
 ### 1.1 Overview
-
-Azure API Management is a turnkey solution for managing and securing APIs. It enables organizations to publish APIs to external, partner, and internal developers to unlock the potential of their data and services. This component aids in creating consistent and modern API gateways for existing back-end services.
+Azure API Management is a fully managed service that enables organizations to publish, secure, transform, maintain, and monitor APIs. It provides a scalable platform for managing APIs across clouds and on-premises, facilitating seamless integration and collaboration between different systems and applications. With Azure API Management, developers can streamline the API lifecycle, enhance security, and ensure high availability for their API services.
 
 ### 1.2 Technical Services
 
-| L1              | L2                  | L3                  | Description                                                                                                                                      |
-|-----------------|---------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| API Management  | API Gateway         | Request Routing     | Directs incoming API requests to the appropriate back-end services. Provides URL mapping and protocol translation.                               |
-|                 |                     | Security            | Implements authentication, authorization, and IP filtering. Supports OAuth 2.0, JWT validation, and integration with Azure AD for secure access. |
-|                 | Developer Portal    | API Documentation   | Automatically generates interactive API documentation and testing environments for developers.                                                   |
-|                 |                     | User Management     | Manages API consumer identities and access through customizable developer portals.                                                               |
-|                 | Analytics & Insights| Usage Analytics     | Provides insights into API usage, performance, and user behavior through detailed analytics and reporting.                                       |
-|                 |                     | Log Monitoring      | Allows for real-time logging and monitoring of APIs to track performance and troubleshoot issues.                                                |
+| L1          | L2                  | L3                  | Description                                                                 |
+|-------------|---------------------|---------------------|-----------------------------------------------------------------------------|
+| API Gateway | Traffic Management  | Rate Limiting       | Controls the number of API calls to ensure fair usage and mitigate abuse.   |
+|             |                     | Load Balancing      | Distributes incoming network traffic across multiple servers.               |
+|             | Security            | Authentication      | Supports OAuth 2.0, JWT, and other authentication protocols.                |
+|             |                     | IP Whitelisting     | Restricts access to APIs from specified IP addresses.                       |
+|             | Policy Management   | Caching             | Reduces latency by storing API responses temporarily.                       |
+|             |                     | Transformation      | Modifies requests and responses using policies.                             |
+| Developer   | Developer Portal    | API Documentation   | Provides comprehensive documentation for API consumers.                     |
+| Engagement  |                     | API Analytics       | Offers insights into API usage, performance, and errors.                    |
+| Integration | Backend Connection  | Virtual Network     | Connects APIs securely to backend services within a virtual network.        |
+|             |                     | Service Discovery   | Dynamically discovers and connects to backend services.                     |
 
 ## 2. Interfaces
-
-- Azure APIs
-- Custom APIs
-- Azure Active Directory
-- On-premises services through Hybrid Connections or Azure Virtual Network
+- RESTful APIs
+- SOAP-based services
+- OAuth 2.0 and OpenID Connect for authentication
+- Azure services such as Azure Functions, Azure Logic Apps, and Azure Service Bus
 
 ## 3. Use Cases
 
 ### 3.1 Good Use Cases
-
-- **API Monetization:** Enable organizations to package and sell APIs to partners and external developers.
-- **Multi-channel Retail:** Facilitate consistent API delivery across web, mobile, and IoT devices.
-- **Partner Integration:** Securely expose internal APIs to partners to streamline supply chain and logistics operations.
+- **API Monetization:** Enabling developers to expose APIs for third-party access and monetize them.
+- **API Gateway:** Acting as a front door for all APIs, providing centralized management and security.
+- **API Versioning:** Supporting multiple versions of an API to ensure backward compatibility.
+- **B2B Integration:** Facilitating secure and scalable integration between business partners.
 
 ### 3.2 Bad Use Cases
+- **File Storage:** Not designed to serve as a file storage solution or content delivery network.
+- **Heavy Data Processing:** Unsuitable for executing long-running or compute-intensive workloads.
+- **Direct Database Access:** Should not be used as a direct interface for database operations.
 
-- **Non-HTTP Protocols:** Azure API Management is not designed for protocols outside of HTTP/HTTPS.
-- **Complex ETL Operations:** Not suited for handling complex data transformation and loading tasks typically managed by data integration tools.
-- **High-Frequency Real-Time Messaging:** Inefficient for scenarios requiring extremely low-latency message delivery.
-
-## 4. Security Best Practices
+## 4. Security Best Practice
 
 ### 4.1 Roles
-
-- **API Administrator:** Manages API configurations, policies, and lifecycle.
-- **Developer:** Consumes APIs and builds applications using the provided APIs.
-- **Security Administrator:** Oversees security configurations and ensures compliance with security policies.
+- **API Administrator:** Manages API lifecycle and enforces policies.
+- **API Developer:** Develops and maintains APIs and their configurations.
+- **API Consumer:** Accesses APIs to integrate with applications.
 
 ### 4.2 Security
-
-Azure API Management provides industry-standard security measures, including authentication, authorization, and transport-level security. Policies such as IP filtering, rate limiting, and request validation enhance the security posture.
+Azure API Management adopts a security-first approach, ensuring that APIs are protected from unauthorized access and vulnerabilities. It supports various authentication protocols and provides built-in security features like IP filtering and SSL termination.
 
 #### 4.2.1 Data Sensitivity
+Azure API Management can handle data with varying sensitivity levels, ranging from public to highly confidential. The following table outlines configuration settings to manage data sensitivity:
 
-Azure API Management can handle various data sensitivity levels with appropriate configuration settings.
-
-| Data Sensitivity Level | Configuration Setting                                                                 |
-|------------------------|---------------------------------------------------------------------------------------|
-| Low                    | Basic authentication, no IP filtering, open access through developer portal            |
-| Medium                 | OAuth 2.0 authentication, IP whitelisting, API key restrictions                        |
-| High                   | Azure AD authentication, JWT validation, strict rate limiting, and logging enabled     |
+| Data Sensitivity Level | Configuration Setting                             |
+|------------------------|---------------------------------------------------|
+| Public                 | Enable IP whitelisting and SSL termination.       |
+| Internal               | Implement OAuth 2.0 and API key authentication.   |
+| Confidential           | Enforce JWT validation and role-based access.     |
+| Highly Confidential    | Use VNET integration and data encryption at rest. |
 
 ## 5. Summary
-
-Azure API Management provides a comprehensive framework for managing APIs, ensuring secure, scalable, and reliable API delivery. It is best suited for scenarios involving API monetization, multi-channel delivery, and partner integration in the E-Commerce sector, while it should be avoided for non-HTTP protocols, complex ETL operations, and high-frequency real-time messaging. With robust security features and role-based access, it ensures that data and services are protected while being easily accessible to authorized users.
+Azure API Management offers a robust platform for managing APIs, providing features such as traffic management, security, and analytics. It is well-suited for e-commerce applications, enabling seamless integration and secure access to APIs. By adhering to best practices and understanding its limitations, organizations can effectively leverage Azure API Management to enhance their API strategy and drive business value.
