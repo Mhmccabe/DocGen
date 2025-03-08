@@ -45,7 +45,7 @@ def generate_section_content(header: str, instruction: str) -> str:
     return response.content
 
 def main():
-    input_md = "sections.md"
+    input_md = "OpenDocGen/sections.md"
     output_md = "GeneratedDocs/updated_documentation.md"
 
     sections = parse_markdown_sections(input_md)
