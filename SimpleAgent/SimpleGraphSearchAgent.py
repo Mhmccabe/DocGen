@@ -2,6 +2,7 @@ from typing import Dict, List, Tuple, Any, TypedDict
 from langgraph.graph import Graph, StateGraph
 from langchain_openai import ChatOpenAI
 from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.messages import HumanMessage, AIMessage
 from pydantic import BaseModel, Field
@@ -34,8 +35,8 @@ class GraphSearchAgent:
             model="gpt-4-turbo-preview",
             temperature=temperature
         )
-        self.search_tool = DuckDuckGoSearchRun()
-        
+        #self.search_tool = DuckDuckGoSearchRun()
+        self.search_tool = TavilySearchResults(max_results=2)
         # Create the workflow graph
         self.workflow = self._create_workflow()
     

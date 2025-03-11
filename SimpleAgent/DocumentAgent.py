@@ -165,8 +165,8 @@ class DocumentAgent:
             feedback = response.content.split("\n")
             if self.verbose:
                 print("\nReview feedback:")
-                for item in feedback[:3]:  # Show first 3 feedback items
-                    print(f"- {item}")
+                #for item in feedback[:3]:  # Show first 3 feedback items
+                #    print(f"- {item}")
             
             return {"review_feedback": feedback}
         except Exception as e:
