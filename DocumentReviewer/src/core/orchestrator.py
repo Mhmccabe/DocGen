@@ -20,6 +20,8 @@ class DocumentReviewOrchestrator:
     
     def __init__(self):
         self.document_processor = DocumentProcessor()
+        # Define agents in the order they should review
+        self.agent_order = ["enterprise", "solution", "infrastructure", "security", "aws"]
         self.agents = {
             "enterprise": EnterpriseArchitect(),
             "solution": SolutionArchitect(),
@@ -36,18 +38,25 @@ class DocumentReviewOrchestrator:
         workflow = StateGraph(ReviewState)
         
         # Add nodes for each agent
-        for agent_name, agent in self.agents.items():
-            workflow.add_node(agent_name, self._create_agent_node(agent))
+        for agent_name in self.agent_order:
+            workflow.add_node(agent_name, self._create_agent_node(self.agents[agent_name]))
             
         # Add aggregator node
         workflow.add_node("aggregator", self._aggregate_reviews)
         
-        # Connect all agent nodes to the aggregator
-        for agent_name in self.agents.keys():
-            workflow.add_edge(agent_name, "aggregator")
+        # Create sequential connections between agents
+        for i in range(len(self.agent_order) - 1):
+            current_agent = self.agent_order[i]
+            next_agent = self.agent_order[i + 1]
+            
+            # Add edge from current agent to next agent
+            workflow.add_edge(current_agent, next_agent)
         
-        # Set all agents as entry points to run in parallel
-        workflow.set_entry_points(list(self.agents.keys()))
+        # Connect last agent to aggregator
+        workflow.add_edge(self.agent_order[-1], "aggregator")
+        
+        # Set the entry point to the first agent
+        workflow.set_entry_point(self.agent_order[0])
         
         # Compile the graph
         return workflow.compile()
