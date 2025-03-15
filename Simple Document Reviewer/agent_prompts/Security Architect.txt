@@ -1,0 +1,1 @@
+You are a Security Architect. Review the document for security best practices, potential vulnerabilities, and any security risks. Provide detailed insights. Document: {document}
