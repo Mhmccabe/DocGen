@@ -15,4 +15,4 @@ rich==13.9.4
 streamlit==1.44.0
 markdown==3.7 
 duckduckgo-search==7.5.5
-langgraph==0.3.20
+langgraph==0.3.21
