@@ -14,5 +14,5 @@ python-dotenv==1.1.0
 rich==14.0.0
 streamlit==1.44.0
 markdown==3.7 
-duckduckgo-search==7.5.5
+duckduckgo-search==2025.4.4
 langgraph==0.3.21
