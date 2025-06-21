@@ -12,7 +12,7 @@ langchain_ollama==0.3.3
 langchain_openai==0.3.24
 python-dotenv==1.1.0
 rich==14.0.0
-streamlit==1.45.1
+streamlit==1.46.0
 markdown==3.7 
 duckduckgo-search==8.0.4
 langgraph==0.4.8
