@@ -6,7 +6,7 @@ langchain_groq==0.3.8
 langchain_ollama==0.3.10
 langchain_openai==0.3.34
 python-dotenv==1.2.2
-rich==14.0.0
+rich==14.3.3
 streamlit==1.55.0
 markdown==3.10.2 
 duckduckgo-search==8.1.1
