@@ -4,4 +4,4 @@ pdfplumber
 python-docx
 openai
 langchain-anthropic
-python-dotenv==1.1.1 
+python-dotenv==1.2.2 
