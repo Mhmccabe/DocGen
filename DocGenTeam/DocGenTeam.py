@@ -8,8 +8,8 @@ from langchain.memory import ConversationBufferMemory
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-# Initialize GPT-4o Model
-llm = ChatOpenAI(model="gpt-4o", temperature=0.7, api_key=openai_api_key)
+# Initialize LLM — model configurable via OPENAI_MODEL env var
+llm = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "gpt-4o"), temperature=0.7, api_key=openai_api_key)
 
 # Shared Memory for Agents
 memory = ConversationBufferMemory()

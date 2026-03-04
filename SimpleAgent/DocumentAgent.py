@@ -1,3 +1,4 @@
+import os
 from typing import Dict, List, TypedDict, Callable, Union
 from langgraph.graph import Graph, StateGraph
 from langchain_openai import ChatOpenAI
@@ -63,15 +64,15 @@ class DocumentAgent:
     def __init__(self, temperature=0.7, verbose=True):
         # Initialize different LLMs for different tasks
         self.writer = ChatOpenAI(
-            model="gpt-4-turbo-preview",
+            model=os.getenv("OPENAI_MODEL", "gpt-4-turbo-preview"),
             temperature=temperature
         )
         self.reviewer = ChatOpenAI(
-            model="gpt-4-turbo-preview",
+            model=os.getenv("OPENAI_MODEL", "gpt-4-turbo-preview"),
             temperature=0.3
         )
         self.improver = ChatOpenAI(
-            model="gpt-4-turbo-preview",
+            model=os.getenv("OPENAI_MODEL", "gpt-4-turbo-preview"),
             temperature=0.5
         )
         

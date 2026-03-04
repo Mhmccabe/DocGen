@@ -38,6 +38,10 @@ DocGen/
    ANTHROPIC_API_KEY=your_anthropic_key   # optional
    TAVILY_API_KEY=your_tavily_key         # optional, for Tavily search
    GROQ_API_KEY=your_groq_key             # optional
+
+   # Model selection — all apps respect these; defaults shown
+   OPENAI_MODEL=gpt-4o
+   ANTHROPIC_MODEL=claude-3-5-sonnet-20241022
    ```
 
 3. All apps use `python-dotenv` and load `.env` automatically on startup.
@@ -55,7 +59,7 @@ python OpenDocGen/OpenDocGen.py
 ```
 
 **Key file:** `OpenDocGen/sections.md` — edit this to change the document structure and prompts.
-**Model:** `gpt-4` (hardcoded in `OpenDocGen.py`).
+**Model:** `gpt-4` by default; override with `OPENAI_MODEL` in `.env`.
 
 ---
 
@@ -72,7 +76,7 @@ python DocGenReflect/DocGenReflect.py
 
 **Outputs:** `GeneratedDocs/OriginalDoc.md`, `GeneratedDocs/ReflectionDoc.md`, `GeneratedDocs/finaldoc.md`
 **LLM support:** Multiple providers are commented in at the top of the file — uncomment to switch:
-- `ChatOpenAI` (default, `gpt-4o`)
+- `ChatOpenAI` (default, `gpt-4o`; model overridable via `OPENAI_MODEL`)
 - `ChatOllama` (local models: `llama3.2`, `deepseek-r1:14b`)
 - `ChatAnthropic`
 - `ChatGroq`
@@ -98,7 +102,7 @@ python DocGenTeam/DocGenTeam.py
 ```
 
 **Output:** `GeneratedDocs/AgentTeamDoc.md`
-**Model:** `gpt-4o` (hardcoded). Edit `project_info` in `__main__` to change the subject.
+**Model:** `gpt-4o` by default; override with `OPENAI_MODEL` in `.env`. Edit `project_info` in `__main__` to change the subject.
 
 ---
 
@@ -124,7 +128,7 @@ Interactive CLI agent with DuckDuckGo web search and conversation memory.
 python SimpleAgent/simpleAgent.py
 ```
 
-**Model:** `gpt-4-turbo-preview`. Type `quit`/`exit`/`q` to exit.
+**Model:** `gpt-4-turbo-preview` by default; override with `OPENAI_MODEL` in `.env`. Type `quit`/`exit`/`q` to exit.
 
 ---
 
@@ -137,7 +141,7 @@ Reviews PDF/DOC/DOCX files using multiple agent perspectives loaded from text pr
 python "Simple Document Reviewer/main.py" path/to/document.pdf
 ```
 
-**Configuration:** Set `LLM_PROVIDER=openai` or `LLM_PROVIDER=anthropic` in `.env`.
+**Configuration:** Set `LLM_PROVIDER=openai` or `LLM_PROVIDER=anthropic` in `.env`. Model overridable via `OPENAI_MODEL` or `ANTHROPIC_MODEL`.
 **Agent prompts:** Add `.txt` files to `Simple Document Reviewer/agent_prompts/` to add reviewer perspectives. Each file should include a `{document}` placeholder. The special file `consolidate_prompt.txt` consolidates all reviews.
 **Outputs:** Prints per-perspective reviews and a consolidated improvement summary to stdout.
 
@@ -176,8 +180,8 @@ Each agent extends `BaseArchitectAgent` (in `DocumentReviewer/src/agents/base_ag
 
 ## Key Conventions
 
-### LLM Provider Switching
-Most apps hardcode OpenAI (`gpt-4o` or `gpt-4-turbo-preview`). `DocGenReflect` is the most flexible — it has all providers imported and several options commented out for easy switching. Follow that pattern when adding LLM flexibility.
+### LLM Model Selection
+All apps read the model name from the `OPENAI_MODEL` env var (default varies per app) or `ANTHROPIC_MODEL` for Anthropic. Set these in `.env` to switch models without touching code. `DocGenReflect` is the most flexible for provider switching — it has all providers imported and several options commented out at the top of the file.
 
 ### Environment Variables
 Always use `python-dotenv` and `load_dotenv()` at module entry. Never hardcode API keys. Reference `.env_example` for the full set of supported keys.

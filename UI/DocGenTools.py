@@ -1,3 +1,5 @@
+import os
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.output_parsers import PydanticOutputParser
@@ -15,8 +17,9 @@ class DocumentSection(BaseModel):
 
 class LangChainHandler:
     def __init__(self, temperature=0.3):
+        # Model configurable via OPENAI_MODEL env var
         self.llm = ChatOpenAI(
-            model="gpt-4-turbo-preview",
+            model=os.getenv("OPENAI_MODEL", "gpt-4-turbo-preview"),
             temperature=temperature
         )
         self.parser = PydanticOutputParser(pydantic_object=DocumentSection)

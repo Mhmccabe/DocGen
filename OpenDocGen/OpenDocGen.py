@@ -16,11 +16,10 @@ def parse_markdown_sections(file_path: str):
     sections = [(m.group(0).splitlines()[0].strip(), "\n".join(m.group(0).splitlines()[1:]).strip()) for m in matches]
     return sections
 
-# Use ChatGPT via LangChain
+# Use ChatGPT via LangChain — model configurable via OPENAI_MODEL env var
 llm = ChatOpenAI(
-    model="gpt-4",  # Change to "gpt-3.5-turbo" if needed
+    model=os.getenv("OPENAI_MODEL", "gpt-4"),
     temperature=0.5,
-    #openai_api_key=os.getenv("OPENAI_API_KEY")  # Ensure your API key is set
 )
 
 # Prompt template

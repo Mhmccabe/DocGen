@@ -1,3 +1,5 @@
+import os
+
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentType, initialize_agent
 from langchain.tools import DuckDuckGoSearchRun
@@ -10,9 +12,9 @@ load_dotenv()
 
 class WebSearchAgent:
     def __init__(self, temperature=0.7):
-        # Initialize the language model
+        # Initialize the language model — model configurable via OPENAI_MODEL env var
         self.llm = ChatOpenAI(
-            model="gpt-4-turbo-preview",
+            model=os.getenv("OPENAI_MODEL", "gpt-4-turbo-preview"),
             temperature=temperature
         )
         

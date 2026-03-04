@@ -42,11 +42,11 @@ def get_llm(model_provider=None):
     if provider == "openai":
         if not API_KEY:
             raise ValueError("OPENAI_API_KEY is not set in the environment")
-        return OpenAI(temperature=0, openai_api_key=API_KEY)
+        return OpenAI(temperature=0, openai_api_key=API_KEY, model_name=os.getenv("OPENAI_MODEL", "gpt-3.5-turbo-instruct"))
     elif provider == "anthropic":
         if not ANTHROPIC_API_KEY:
             raise ValueError("ANTHROPIC_API_KEY is not set in the environment")
-        return ChatAnthropic(temperature=0, anthropic_api_key=ANTHROPIC_API_KEY, model="claude-2")
+        return ChatAnthropic(temperature=0, anthropic_api_key=ANTHROPIC_API_KEY, model=os.getenv("ANTHROPIC_MODEL", "claude-3-5-sonnet-20241022"))
     else:
         raise ValueError(f"Unsupported model provider: {provider}. Use 'openai' or 'anthropic'.")
 

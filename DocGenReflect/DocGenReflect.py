@@ -1,3 +1,5 @@
+import os
+
 from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
@@ -19,7 +21,7 @@ load_dotenv()
 #OllamaLLM = ChatOllama(model="llama3.2", temperature=0.2)
 #OllamaLLM = ChatOllama(model="deepseek-r1:14b", temperature=0.2)
 #AnthopicLLM = ChatAnthropic(model_name="llama-3.2-90b-text-preview", temperature=0.7)
-OpenAILLM = ChatOpenAI(model="gpt-4o", temperature=0.7, max_tokens=None, max_retries=2)
+OpenAILLM = ChatOpenAI(model=os.getenv("OPENAI_MODEL", "gpt-4o"), temperature=0.7, max_tokens=None, max_retries=2)
 #GroqLLM =  ChatGroq(model = "Deepseek-R1-Distill-llama-70b", temperature=0.7 )
 #GroqLLM =  ChatGroq(model = "Deepseek-R1-Distill-llama-70b", temperature=0.7 )
 #GroqLLM =  ChatGroq(model = "llama-3.3-70b-Specdec", temperature=0.7 )
