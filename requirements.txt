@@ -1,5 +1,5 @@
 langchain==1.2.10
-langchain_anthropic==1.3.4
+langchain_anthropic==1.3.5
 langchain_community==0.4.1
 langchain_core==1.2.17
 langchain_groq==1.1.2
