@@ -4,5 +4,5 @@ pdfplumber
 python-docx
 openai
 langchain-anthropic
-python-dotenv==1.2.3
+python-dotenv==1.2.4
 pdfminer.six>=20251230
